@@ -1,5 +1,15 @@
 {
+  "name": "packageJS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "chalkOutput.js",
+  "type": "module",
+  "scripts": {
+    "start": "node chalkOutput.js"
+  },
   "dependencies": {
+    "chalk": "^5.6.2",
+    "cli-progress": "^3.12.0",
     "inquirer": "^12.10.0",
     "prompts": "^2.4.2"
   }
