@@ -12,14 +12,14 @@ setTimeout(() => {
 
 // etImmediate
 setImmediate(() => {
-  console.log("setImmediate → Runs after the current event loop phase (Check phase)");
+  console.log("setImmediate Runs after the current event loop phase (Check phase)");
 });
 
 //setInterval
 let count = 0;
 const intervalId = setInterval(() => {
   count++;
-  console.log(`setInterval → Runs repeatedly, count = ${count}`);
+  console.log(`setInterval Runs repeatedly, count = ${count}`);
 
   if (count === 3) {
     clearInterval(intervalId); // stop after 3 times
