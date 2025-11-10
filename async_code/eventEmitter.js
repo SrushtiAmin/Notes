@@ -1,11 +1,30 @@
-    const EventEmitter = require('events');
-    const myEmitter = new EventEmitter();
+const EventEmitter = require('events');
 
-    const emitterA = new EventEmitter();
-    const emitterB = new EventEmitter();
+// Create a custom class extending EventEmitter
+class OrderSystem extends EventEmitter {
+  placeOrder(orderId, amount) {
+    console.log(`New order placed: #${orderId}`);
+    this.emit('orderPlaced', { orderId, amount });
+  }
+}
 
-    emitterA.on('data', () => console.log('Data from A'));
-    emitterB.on('data', () => console.log('Data from B'));
+// Create instance
+const order = new OrderSystem();
 
-    emitterA.emit('data'); // Outputs: "Data from A"
-    emitterB.emit('data'); // Outputs: "Data from B"
+// Listener 1 – process payment
+order.on('orderPlaced', (data) => {
+  console.log(`Processing payment for Order #${data.orderId} of ₹${data.amount}`);
+});
+
+// Listener 2 – send email
+order.on('orderPlaced', (data) => {
+  console.log(`Sending confirmation email for Order #${data.orderId}`);
+});
+
+// Listener 3 – update stock
+order.on('orderPlaced', (data) => {
+  console.log(`Updating stock for Order #${data.orderId}`);
+});
+
+// Emit event (simulate user placing order)
+order.placeOrder(101, 499);
