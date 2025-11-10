@@ -1,9 +1,7 @@
 // timer.js
 import dotenv from "dotenv";
 import chalk from "chalk";
-import { program } from "commander"; // (optional alternative for parsing args)
 import inquirer from "inquirer";
-import prompts from "prompts";
 import cliProgress from "cli-progress";
 
 // 1. Load environment variables
@@ -13,7 +11,7 @@ dotenv.config();
 const user = process.env.DEFAULT_USER || "Guest";
 
 // 3. Parse command-line arguments manually
-// node timer.js study 5
+// Example: node timer.js study 5
 const [,, argTask, argMinutes] = process.argv;
 
 console.log(chalk.cyan(`Hello, ${user}!`));
