@@ -72,9 +72,9 @@ async function runTimer() {
 }
 
 // 6. Optional: Take simple input using process.stdin
-process.stdin.on("data", (data) => {
-  console.log(chalk.gray("You typed:"), data.toString().trim());
-});
+// process.stdin.on("data", (data) => {
+//   console.log(chalk.gray("You typed:"), data.toString().trim());
+// });
 
 // 7. Run
 runTimer().catch((err) => {

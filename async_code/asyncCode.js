@@ -1,30 +1,42 @@
-console.log("Program Start");
+const tasks = [
+  { name: "Clean Desk", time: 1000 },
+  { name: "Write Notes", time: 2000 },
+  { name: "Review Code", time: 3000 },
+];
 
-//  process.nextTick
+// 1. Startup message — synchronous
+console.log("Task Scheduler Started");
+
+// 2. process.nextTick — initialize system immediately (microtask)
 process.nextTick(() => {
-  console.log(" process.nextTick → Runs before all async tasks, even before setTimeout(0)");
+  console.log("System Initialized — Ready to process tasks");
 });
 
-// setTimeout
-setTimeout(() => {
-  console.log("setTimeout → Runs after at least 0 ms delay (Timer phase)");
-}, 0);
-
-// etImmediate
+// 3. setImmediate — logs after setup phase
 setImmediate(() => {
-  console.log("setImmediate Runs after the current event loop phase (Check phase)");
+  console.log("Checking system status after setup...");
 });
 
-//setInterval
-let count = 0;
-const intervalId = setInterval(() => {
-  count++;
-  console.log(`setInterval Runs repeatedly, count = ${count}`);
+// 4. setInterval — show system heartbeat every 2 seconds
+let heartbeat = 0;
+const heartbeatId = setInterval(() => {
+  heartbeat++;
+  console.log(`System heartbeat: ${heartbeat}`);
 
-  if (count === 3) {
-    clearInterval(intervalId); // stop after 3 times
-    console.log("setInterval stopped");
+  if (heartbeat === 5) {
+    clearInterval(heartbeatId);
+    console.log("Heartbeat stopped after 5 intervals");
   }
-}, 1000);
+}, 2000);
 
-console.log("Program End");
+// 5. Simulate running tasks using setTimeout (timer phase)
+tasks.forEach((task, index) => {
+  setTimeout(() => {
+    console.log(`Completed task: ${task.name}`);
+    if (index === tasks.length - 1) {
+      console.log("All tasks completed");
+    }
+  }, task.time);
+});
+
+console.log("System Running... waiting for tasks to complete");
